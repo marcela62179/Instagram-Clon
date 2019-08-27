@@ -1,0 +1,101 @@
+$nav-height: 61px;
+
+.sidebar {
+    top: $nav-height;
+    height: calc(100% - 61px);
+    padding-bottom: $nav-height;
+    width: 240px;
+    z-index: 1000;
+    background-color: #252525;
+    position: fixed;
+    color: white;
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    transition: 1s;
+    overflow-y: auto;
+}
+
+.sidebarItems {
+    width: 100%;
+    height: 100%;
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        font-size: 13px;
+        width: 100%;
+
+        li {
+            padding-left: 30px;
+            height: 42px;
+            width: 100%;
+            line-height: 0;
+            display: flex;
+            flex-direction: row;
+            align-content: center;
+            align-items: center;
+            justify-items: center;
+            user-select: none;
+            svg {
+                margin-right: 20px;
+                height: 16px;
+                width: 16px;
+            }
+        }
+    }
+}
+
+.sidebarItems-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.sidebarItems-userloged {
+    .avatar {
+        background-color: white;
+        margin-right: 20px;
+        img {
+            height: 40px;
+            width: 40px;
+            border-radius: 20px;
+        }
+    }
+    height: auto !important;
+    padding: 10px 0px;
+    background-color:#1d1d1d;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-left: 30px;
+}
+
+.navbar {
+    height: $nav-height;
+    position: fixed;
+    width: 100%;
+    background-color: #252525;
+    top: 0;
+
+    svg {
+        margin-right: 20px;
+        height: 30px;
+        width: 30px;
+        transition: 0.5s;
+        fill: white !important;
+        stroke: white;
+    }
+}
+
+.sidebarSelected {
+    li {
+        background: #9b59b6;
+        width: 94% !important;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+}
