@@ -1,8 +1,14 @@
 import { Router } from "express";
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
+
+
 require('dotenv').config()
 var aws = require('aws-sdk');
+
+const fs = require('fs');
+const path = require('path');
+const privateKey = fs.readFileSync(path.resolve(__dirname, "../privateKey.pem"));
 
 aws.config.update({
     region: 'us-east-1',
@@ -28,7 +34,7 @@ router.post("/api/login", async (req, res) => {
         let token = jwt.sign({
             id: user._id,
             username: user.username
-        }, process.env.SECRET_KEY, { expiresIn: 129600, algorithm: 'HS512' });
+        }, privateKey , { expiresIn: '7d', algorithm: 'ES512' });
 
         res.status(200).json({
             sucess: true,
@@ -43,35 +49,6 @@ router.post("/api/login", async (req, res) => {
             token: null
         });
         return;
-    }
-});
-
-router.post("/api/whois", async (req, res) => {
-    let header = req.headers['authorization']
-    if (header !== undefined) {
-        let token = header.split(' ')[1];
-        if (!token) {
-            return res.status(401).json({
-                isValid: false,
-                err: 'No token provided'
-            });
-        }
-        try {
-            jwt.verify(token, process.env.SECRET_KEY)
-            return res.json({
-                isValid: true
-            })
-        } catch (error) {
-            return res.json({
-                isValid: false,
-                err: error
-            })
-        }
-    } else {
-        return res.status(401).json({
-            isValid: false,
-            err: 'No token provided'
-        });
     }
 });
 

@@ -26,8 +26,6 @@ export function initAxiosInterceptors() {
             }
         }
 
-        console.log(config.url)
-
         return config;
     });
 

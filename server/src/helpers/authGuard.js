@@ -1,9 +1,15 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 
+const fs = require('fs');
+const path = require('path');
+const publicKey = fs.readFileSync(path.resolve(__dirname, "../publicKey.pem"));
+
 export const authClientToken = async (req, res, next) => {
 
     let header = req.headers['authorization'];
+
+
 
     if (typeof header !== 'undefined') {
 
@@ -16,7 +22,7 @@ export const authClientToken = async (req, res, next) => {
 
         }
 
-        jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+        jwt.verify(token, publicKey, (err, decoded) => {
 
             if (err) {
                 return res.status(401).json({ err: 'Invalid Token' });
