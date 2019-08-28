@@ -20,11 +20,21 @@ router.get('/api/user/whois', async (req, res) => {
             }
         );
 
-        
+
     } catch (error) {
         res.json({ "error": error })
     }
 })
 
+router.get('/api/user/:username', async (req, res) => {
+    try {
+        const username = req.params.username
+        const user = await User.find({ "username": username }, {password: false})
+
+        res.status(200).json(user);
+    } catch (error) {
+        res.json({ "error": error })
+    }
+})
 
 export default router

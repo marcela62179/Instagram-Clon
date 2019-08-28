@@ -1,5 +1,7 @@
 import Axios from 'axios';
-import {history} from './history';
+import { history } from './history';
+import { API_URL } from './Api_url';
+
 const TOKEN_KEY = 'token';
 
 export function setToken(valor) {
@@ -18,9 +20,13 @@ export function initAxiosInterceptors() {
     Axios.interceptors.request.use(function (config) {
         const token = getToken();
 
-        if (token) {
-            config.headers.Authorization = `bearer ${token}`;
+        if (config.url.includes(API_URL)) {
+            if (token) {
+                config.headers.Authorization = `bearer ${token}`;
+            }
         }
+
+        console.log(config.url)
 
         return config;
     });

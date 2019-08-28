@@ -1,6 +1,7 @@
 import axios from 'axios';
 import shortid from 'shortid';
 import {API_URL} from '../../helpers/Api_url';
+
 export const STARTING_UPLOAD = 'STARTING_UPLOAD';
 export const SUCCESS_UPLOAD = 'SUCCESS_UPLOAD';
 export const ERROR_UPLOAD = 'ERROR_UPLOAD';

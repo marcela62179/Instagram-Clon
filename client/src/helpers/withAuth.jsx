@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import {API_URL} from './Api_url';
 
 const withAuth = (Component) => ({ ...props }) => {
 
@@ -9,7 +10,7 @@ const withAuth = (Component) => ({ ...props }) => {
 
     useEffect(() => {
         async function getUser(){
-            await axios.get('http://localhost:5000/api/user/whois')
+            await axios.get(`${API_URL}/api/user/whois`)
             .then(res => {
                 if(res.data.tokenIsValid){
                     setUser(res.data.user[0])
