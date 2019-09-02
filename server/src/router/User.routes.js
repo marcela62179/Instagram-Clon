@@ -1,7 +1,7 @@
 import { Router } from "express";
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
-
+import Image from '../models/Image';
 require('dotenv').config()
 
 const fs = require('fs');
@@ -15,7 +15,7 @@ router.get('/api/user/whois', async (req, res) => {
         const token = req.token;
         const decode = jwt.decode(token);
         const { id } = decode;
-        const user = await User.find({ "_id": id })
+        const user = await User.find({ "_id": id } , {password: false})
         const isValid = await jwt.verify(token, publicKey)
         if (user && isValid) {
             res.status(200).json(
@@ -41,10 +41,10 @@ router.get('/api/user/:username', async (req, res) => {
     try {
         const username = req.params.username
         const user = await User.find({ "username": username }, { password: false })
-
-        res.status(200).json(user);
+        const images = await Image.find({ "author": user[0]._id}).sort({'_id': -1});
+        return res.status(200).json({user: user[0], images: images});
     } catch (error) {
-        res.json({ "error": error })
+        return res.json({ "error": error })
     }
 })
 

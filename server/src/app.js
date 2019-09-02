@@ -15,7 +15,7 @@ let app = express();
 
 Mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
-var whitelist = ['http://localhost:3000']
+var whitelist = ['http://localhost:3000', 'http://localhost:51459']
 
 var corsOptions = {
     origin: whitelist

@@ -1,6 +1,6 @@
 import Axios from 'axios';
-import { history } from './history';
 import { API_URL } from './Api_url';
+import jwt from 'jsonwebtoken';
 
 const TOKEN_KEY = 'token';
 
@@ -14,6 +14,20 @@ export function getToken() {
 
 export function deleteToken() {
     localStorage.removeItem(TOKEN_KEY);
+}
+
+export function getTokenDecode() {
+    if(getToken()){
+        let decode = jwt.decode(getToken())
+        if(decode){
+            return decode
+        }else{
+            deleteToken();
+            return null;
+        }
+    }else{
+        return null
+    }
 }
 
 export function initAxiosInterceptors() {
@@ -36,8 +50,7 @@ export function initAxiosInterceptors() {
         function (error) {
             if (401 === error.response.status) {
                 deleteToken();
-                //window.location = '/login';
-                history.push('/login')
+                window.location = '/login'
             } else {
                 return Promise.reject(error);
             }

@@ -13,7 +13,7 @@ router.post("/api/image", async (req, res) => {
             author: req.tokenId
         })
         await newImage.save()
-        return res.status(200).json(newImage)
+        return res.status(200).json(newImage).populate('author', 'username')
 
     } catch (error) {
         return res.json({

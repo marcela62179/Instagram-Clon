@@ -15,40 +15,56 @@ const LoginForm = () => {
     }
 
     return (
-        <form className='loginForm' onSubmit={(e) => loginSubmit(e)}>
-            <div className="form-group">
-                <label htmlFor="Username">Username</label>
-                <Field
-                    name='username'
-                    component='input'
-                    type='text'
-                    placeholder='Username'
-                    className='form-control'
-                    required
-                />
+        <form onSubmit={(e) => loginSubmit(e)}>
+            <h1 className='title has-text-centered has-text-weight-bold'>Welcome Back</h1>
+            <div className="field">
+                <label className='label' htmlFor="Username">Username</label>
+                <div className="control">
+                    <Field
+                        name='username'
+                        component='input'
+                        type='text'
+                        placeholder='Enter your username'
+                        className={`input is-shadowless ${login.error && 'is-danger' }`}
+                        required
+                    />
+                </div>
             </div>
-            <div className="form-group">
-                <label htmlFor="Password">Password</label>
-                <Field
-                    name='password'
-                    component='input'
-                    type='password'
-                    placeholder='Password'
-                    className='form-control'
-                    required
-                />
+            <div className="field">
+                <label className='label' htmlFor="Password">Password</label>
+                <div className="control">
+                    <Field
+                        name='password'
+                        component='input'
+                        type='password'
+                        placeholder='Enter your password'
+                        className={`input is-shadowless ${login.error && 'is-danger' }`}
+                        required
+                    />
+                </div>
+            </div>
+            
+            <div className="field">
+                <p className='control'><a className='has-text-left' href="/">Forgot your password ?</a></p>
             </div>
 
-            <button className='btn btn-info btn-block'> Log In </button>
+            <div className="field">
+                <p className="control">
+                    <button className={`button is-primary is-fullwidth btn-login ${login.starting && 'is-loading'}`}> Log In </button>
+                </p>
+            </div>
+            
+
             {login.error && (
-                <div className="form-group">
-                    <br/>
-                    <small className='text-danger'>
-                        {login.error}
-                    </small>
+                <div className="field">
+                    <div className="control">
+                        <small className='has-text-danger'>
+                            {login.error}
+                        </small>
+                    </div>
                 </div>
             )}
-            
+
         </form>
     );
 }

@@ -28,11 +28,10 @@ export let getProfileError = (payload) => {
 export const getProfileThunk = (username) => {
     return async (dispatch, getState) => {
         dispatch(getProfileStarting());
-
         await axios.get(`${API_URL}/api/user/${username}`)
         .then(res => {
-            let profile = res.data[0]
-            dispatch(getProfileSuccess(profile))
+            let data = res.data
+            dispatch(getProfileSuccess(data))
         }).catch(err => {
             dispatch(getProfileError(err))
         })

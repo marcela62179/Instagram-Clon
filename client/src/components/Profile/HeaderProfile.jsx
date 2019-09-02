@@ -3,12 +3,12 @@ import propTypes from 'prop-types';
 import ProfileAvatar from './ProfileAvatar';
 import ProfileInfo from './ProfileInfo';
 
-const HeaderProfile = ({profile}) => {
+const HeaderProfile = ({profile, images}) => {
 
     return (
         <div className="headerProfile">
             <ProfileAvatar avatar={profile.avatar}/>
-            <ProfileInfo username={profile.username} />
+            <ProfileInfo username={profile.username} images={images}/>
         </div>
     );
 }

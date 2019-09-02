@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { history } from '../../helpers/history';
 import { API_URL } from '../../helpers/Api_url';
 import { setToken, deleteToken } from '../../helpers/auth-helpers';
 
@@ -39,11 +38,11 @@ export const loginThunk = () => {
         })
 
         if(res.data.err){
-            dispatch(errorLogin(res.data.err))
+            dispatch(errorLogin(res.data.err))           
         }else{
             setToken(res.data.token)
             dispatch(successLogin(true));
-            history.push('/dashboard')
+            window.location = '/explore'
         }
         
     }
@@ -53,6 +52,6 @@ export const logOut = () => {
     return async (dispatch) => {
         deleteToken()
         dispatch(successLogin(false))
-        history.push('/login')
+        window.location = '/login'
     }
 }
