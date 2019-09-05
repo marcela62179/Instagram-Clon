@@ -12,7 +12,7 @@ import { initAxiosInterceptors } from './helpers/auth-helpers';
 initAxiosInterceptors();
 
 function App() {
-
+    
     return (
         <Router history={history}>
             <AppMenu />
@@ -31,7 +31,7 @@ function App() {
                 <Route path='/p/:imageid' render={(props) => {
                     let imageid = props.match.params.imageid
                     return(
-                        <ImagePage imageid={imageid}/>
+                        withAuth(<ImagePage imageid={imageid}/>)
                     )
                 }}/>
                 

@@ -1,16 +1,38 @@
-import {useEffect} from 'react';
-import {useSelector, useDispatch, shallowEqual} from 'react-redux';
-import {getProfileThunk} from '../store/profile/actions';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProfileThunk } from '../store/profile/actions';
 
 function useProfile(username) {
-    const profile = useSelector(state => state.profile, shallowEqual);
+
+    const [reload, setReload] = useState(false)
+
+    const profile = useSelector(state => state.profile);
     const dispatch = useDispatch();
+
     useEffect(() => {
-        if (Object.keys(profile.data).length === 0 && !profile.starting) {
+        if (!profile.data || profile.data.username !== username) {
             dispatch(getProfileThunk(username))
         }
     }, [])
-    return profile
+
+    useEffect(() => {
+        if (reload) {
+            if (profile) {
+                dispatch(getProfileThunk(username))
+                setReload(false)
+            }
+        }
+    }, [reload])
+
+    const payload = {
+        loading: profile.loading,
+        data: profile.data,
+        images: profile.images,
+        setReloadProfile: setReload
+    }
+
+    return payload
 }
+
 
 export default useProfile

@@ -3,11 +3,16 @@ import { uploadFilePro } from '../../helpers/uploadFile';
 import Axios from 'axios';
 import { history } from '../../helpers/history';
 import { API_URL } from '../../helpers/Api_url';
+import ReactSVG from 'react-svg';
+import UploadIcon from '../../assets/icons/upload.svg';
+import useProfile from '../../Hooks/useProfile';
 
 const NewPostForm = ({ setIsOpen }) => {
 
     let uploadInput = useRef();
     let [error, setError] = useState(null)
+
+    const { setReloadProfile } = useProfile()
 
     let uploadNewPost = async (e) => {
         e.preventDefault();
@@ -17,7 +22,11 @@ const NewPostForm = ({ setIsOpen }) => {
                 await Axios.post(`${API_URL}/api/image`, { url: res.url })
                     .then(res => {
                         history.push(`/p/${res.data._id}`)
+                        setReloadProfile(true)
                         setIsOpen(false)
+                    })
+                    .catch(err => {
+                        setError(err)
                     })
             })
     }
@@ -31,7 +40,7 @@ const NewPostForm = ({ setIsOpen }) => {
                         <input ref={uploadInput} className="file-input" type="file" name="resume" />
                         <span className="file-cta">
                             <span className="file-icon">
-                                <i className="fas fa-upload"></i>
+                                <ReactSVG className='icon' src={UploadIcon}/>
                             </span>
                             <span className="file-label">Choose a file…</span>
                         </span>

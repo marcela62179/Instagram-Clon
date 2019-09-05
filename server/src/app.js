@@ -3,21 +3,22 @@ import express from 'express';
 import Mongoose from 'mongoose';
 import morgan from 'morgan'
 import { json, urlencoded } from 'body-parser';
-import { authClientToken } from './helpers/authGuard';
+import AuthToken from './middlewares/AuthToken';
 import cors from 'cors';
 
 //  Routes
-import Login from './router/Login.routes';
-import Image from './router/Image.routes';
-import User from './router/User.routes';
+import Login from './routes/Login.routes';
+import Image from './routes/Image.routes';
+import User from './routes/User.routes';
+import Upload from './routes/Upload.routes';
 
-let app = express();
+const app = express();
 
 Mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
-var whitelist = ['http://localhost:3000', 'http://localhost:51459']
+const whitelist = ['http://localhost:3000', '*', 'http://190.211.3.200:3000']
 
-var corsOptions = {
+const corsOptions = {
     origin: whitelist
 }
 
@@ -28,8 +29,9 @@ app.use(urlencoded({ extended: false }));
 
 // Rutas
 app.use(Login)
-app.use(authClientToken, User)
-app.use(authClientToken, Image)
+app.use(AuthToken, User)
+app.use(AuthToken, Image)
+app.use(AuthToken, Upload)
 
 app.listen(5000, () => {
     console.log('Servidor api en el puerto 5000 !')

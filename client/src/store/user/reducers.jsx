@@ -1,6 +1,7 @@
 import { GET_USER_STARTING, GET_USER_SUCCESS, GET_USER_ERROR } from './actions';
 
 let INITIAL_STATE = {
+    loading: true,
     starting: false,
     data: {},
     isLoged: false,
@@ -11,6 +12,7 @@ export let userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case GET_USER_STARTING:
             return Object.assign({}, state, {
+                loading: true,
                 starting: true,
                 data: {},
                 isLoged: false,
@@ -18,6 +20,7 @@ export let userReducer = (state = INITIAL_STATE, action) => {
             })
         case GET_USER_SUCCESS:
             return Object.assign({}, state, {
+                loading: false,
                 starting: false,
                 data: action.payload.user,
                 isLoged: true,
@@ -25,6 +28,7 @@ export let userReducer = (state = INITIAL_STATE, action) => {
             })
         case GET_USER_ERROR:
             return Object.assign({}, state, {
+                loading: false,
                 starting: true,
                 data: {},
                 isLoged: false,

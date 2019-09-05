@@ -7,20 +7,16 @@ const withAuth = (Component) => ({ ...props }) => {
 
     let [user, setUser] = useState(undefined);
     let [loadingUser, setLoadingUser] = useState(true);
+    let [isValid, setIsValid] = useState(false)
 
     useEffect(() => {
         async function getUser() {
             await axios.get(`${API_URL}/api/user/whois`)
                 .then(res => {
-                    if (res.data.tokenIsValid) {
-                        setUser(res.data.user)
-                    } else {
-                        setUser(undefined)
-                    };
+                    setIsValid(res.data.tokenIsValid)
                     setTimeout(() => {
                         setLoadingUser(false)
                     }, 10)
-
                 }).catch(err => {
                     console.log(err)
                 })
@@ -35,8 +31,8 @@ const withAuth = (Component) => ({ ...props }) => {
     }
 
     return (
-        user ? (
-            <Component {...props} user={user} />
+        isValid ? (
+            <Component {...props} />
         ) : (
                 <Redirect to='/login' />
             )

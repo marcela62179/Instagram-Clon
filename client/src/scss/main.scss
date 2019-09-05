@@ -17,3 +17,17 @@
     justify-content: center;
     justify-items: center;
 }
+
+[class*=" icon"],
+[class^=icon] {
+    display: block;
+    width: 1.4rem;
+    height: 1.4rem;
+    stroke: #212529;
+}
+
+.activeClassNavLink {
+    .icon{
+        fill: red;
+    }
+}
