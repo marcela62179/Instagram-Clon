@@ -1,7 +1,8 @@
 # Instagram-Clon
 Desarrollado desde cero con el stack mern y jwt
 
-# Objetivos
+## Objetivos
+
 - Login de usuario ✔
 - Registro de usuario ✔
 - Proteger Api con JWT ✔
