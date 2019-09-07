@@ -1,14 +1,15 @@
-.authForm{
+.authForm {
     display: flex;
     flex-direction: column;
     width: 60%;
-    input{
+
+    input {
         border: 0.5px solid #e5e9ea;
         background-color: #f4f5ff;
     }
 }
 
-.authFormMenu{
+.authFormMenu {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -21,7 +22,8 @@
     background-color: #886dea;
     border: #886dea;
     transition: 0.5s;
-    &:hover{
+
+    &:hover {
         border-bottom-right-radius: 0px;
         border-top-left-radius: 0px;
 
@@ -33,7 +35,7 @@
     }
 }
 
-.loginRegisterSelector{
+.loginRegisterSelector {
     margin: 20px;
     font-weight: bold;
     cursor: pointer;

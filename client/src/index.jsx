@@ -7,18 +7,16 @@ import { Provider } from 'react-redux';
 
 import 'bulma/css/bulma.css';
 import './scss/main.scss';
-import 'bulma-helpers/css/bulma-helpers.min.css'
-import 'bulma-extensions/dist/css/bulma-extensions.min.css'
-import 'bulma-extensions/dist/js/bulma-extensions.min.js'
+import 'bulma-helpers/css/bulma-helpers.min.css';
+import 'bulma-extensions/dist/css/bulma-extensions.min.css';
+import 'bulma-extensions/dist/js/bulma-extensions.min.js';
 
 ReactDOM.render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
 
-    <Provider store={store}>
-        <App />
-    </Provider>
-
-    ,
-    document.getElementById('root')
+	document.getElementById('root')
 );
 
 serviceWorker.unregister();

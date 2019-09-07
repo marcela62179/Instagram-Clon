@@ -3,29 +3,27 @@ import propTypes from 'prop-types';
 import ImageCard from './ImageCard';
 
 const ProfileImages = ({ images }) => {
-    return (
-        <section className="imagesContainer">
+	return (
+		<section className="imagesContainer">
+			{images.length === 0 && (
+				<div>
+					<b>Este perfil aun no sube imagenes.</b>
+				</div>
+			)}
 
-            {images.length === 0 && (
-                <div>
-                    <b>Este perfil aun no sube imagenes.</b>
-                </div>
-            )}
-
-            {images.map((image) => (
-                <ImageCard image={image} key={image._id} />
-            ))}
-
-        </section>
-    );
-}
+			{images.map(image => (
+				<ImageCard image={image} key={image._id} />
+			))}
+		</section>
+	);
+};
 
 ProfileImages.defaultProps = {
-    images: []
-}
+	images: []
+};
 
 ProfileImages.propTypes = {
-    images: propTypes.array
-}
+	images: propTypes.array
+};
 
 export default ProfileImages;

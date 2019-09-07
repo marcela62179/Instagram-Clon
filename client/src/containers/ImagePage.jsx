@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const ImagePage = ({imageid}) => {
-    return (
-        <>
+const ImagePage = ({ imageid }) => {
+	return <></>;
+};
 
-        </>
-    );
-}
- 
 export default ImagePage;

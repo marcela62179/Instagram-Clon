@@ -3,36 +3,35 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getProfileThunk } from '../store/profile/actions';
 
 function useProfile(username) {
+	const [reload, setReload] = useState(false);
 
-    const [reload, setReload] = useState(false)
+	const profile = useSelector(state => state.profile);
+	const dispatch = useDispatch();
 
-    const profile = useSelector(state => state.profile);
-    const dispatch = useDispatch();
+	useEffect(() => {
+		if (!profile.data || profile.data.username !== username) {
+			dispatch(getProfileThunk(username));
+		}
+	}, []);
 
-    useEffect(() => {
-        if (!profile.data || profile.data.username !== username) {
-            dispatch(getProfileThunk(username))
-        }
-    }, [])
+	useEffect(() => {
+		if (reload) {
+			if (profile) {
+				dispatch(getProfileThunk(username));
+				setReload(false);
+			}
+		}
+	}, [reload]);
 
-    useEffect(() => {
-        if (reload) {
-            if (profile) {
-                dispatch(getProfileThunk(username))
-                setReload(false)
-            }
-        }
-    }, [reload])
+	const payload = {
+		loading: profile.loading,
+		data: profile.data,
+		images: profile.images,
+		error: profile.error,
+		setReloadProfile: setReload
+	};
 
-    const payload = {
-        loading: profile.loading,
-        data: profile.data,
-        images: profile.images,
-        setReloadProfile: setReload
-    }
-
-    return payload
+	return payload;
 }
 
-
-export default useProfile
+export default useProfile;

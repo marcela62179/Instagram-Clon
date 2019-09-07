@@ -5,71 +5,64 @@ import ProfileImages from '../components/Profile/ProfileImages';
 import useProfile from '../Hooks/useProfile';
 import useUser from '../Hooks/useUser';
 import Base from '../layouts/Base';
-import Loader from '../components/Utils/Loader'
+import Loader from '../components/Utils/Loader';
 import UserNotExist from './UserNotExist';
+import ErrorMessage from '../components/Utils/ErrorMessage';
 
 const Profile = ({ username }) => {
+	const { loading, data, images, error, setReloadProfile } = useProfile(
+		username
+	);
 
-    const { loading, data, images, setReloadProfile } = useProfile(username)
+	const user = useUser();
 
-    const user = useUser()
+	if (loading) {
+		return <Loader />;
+	}
 
-    if ( loading ) {
-        return (
-            <Loader />
-        )
-    }
+	if (data.username) {
+		if (username !== data.username) {
+			return <></>;
+		}
+	}
 
-    if ( !data ) {
-        return <UserNotExist />
-    }
+	return (
+		<Base title={username} description="desc de profile">
+			<div className="container">
+				<div className="columns">
+					<div className="column is-10 is-offset-1">
+						{!error && (
+							<HeaderProfile
+								profile={data}
+								user={user.data}
+								images={images}
+								setReloadProfile={setReloadProfile}
+							/>
+						)}
+					</div>
+				</div>
 
-    if ( username !== data.username ) {
-        return <></>
-    }
+				<div className="columns">
+					<div className="column"></div>
+				</div>
 
-    return (
-        <Base title={username} description='desc de profile'>
-            <div className="container">
-
-                <div className="columns">
-                    <div className="column is-10 is-offset-1">
-
-                        <HeaderProfile 
-                            profile={data} 
-                            user={user.data} 
-                            images={images} 
-                            setReloadProfile={setReloadProfile}                    
-                        />
-
-                    </div>
-                </div>
-
-                <div className="columns">
-                    <div className="column">
-
-                    </div>
-                </div>
-
-                <div className="columns">
-                    <div className="column is-8 is-offset-2">
-
-                        <ProfileImages images={images} />
-                        
-                    </div>
-                </div>
-
-            </div>
-        </Base>
-    );
-}
+				<div className="columns">
+					<div className="column is-8 is-offset-2">
+						{!error && <ProfileImages images={images} />}
+						{error && <ErrorMessage error={error} />}
+					</div>
+				</div>
+			</div>
+		</Base>
+	);
+};
 
 Profile.propTypes = {
-    username: propTypes.string
-}
+	username: propTypes.string
+};
 
 Profile.defaultProps = {
-    username: ''
-}
+	username: ''
+};
 
 export default Profile;

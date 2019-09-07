@@ -1,11 +1,9 @@
 import { Router } from 'express';
 
-import {
-    Upload
-} from '../controllers/Upload.controllers'
+import { Upload } from '../controllers/Upload.controllers';
 
 const router = Router();
 
-router.post("/api/upload", Upload);
+router.post('/api/upload', Upload);
 
-export default router
+export default router;

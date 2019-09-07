@@ -1,18 +1,13 @@
-import { Router } from "express";
+import { Router } from 'express';
 
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
 
-import {
-    Login,
-    SignUp
-} from '../controllers/Login.controllers';
-
+import { Login, SignUp } from '../controllers/Login.controllers';
 
 const router = Router();
 
-router.post("/api/login", Login );
-router.post("/api/signup", SignUp )
+router.post('/api/login', Login);
+router.post('/api/signup', SignUp);
 
-
-export default router
+export default router;
