@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk } from '../../store/login/actions';
+import ErrorMessage from '../Utils/ErrorMessage';
 
 const LoginForm = () => {
 
@@ -56,13 +57,7 @@ const LoginForm = () => {
             
 
             {login.error && (
-                <div className="field">
-                    <div className="control">
-                        <small className='has-text-danger'>
-                            {login.error}
-                        </small>
-                    </div>
-                </div>
+                <ErrorMessage error={login.error}/>
             )}
 
         </form>

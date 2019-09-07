@@ -29,12 +29,12 @@ export const getUserThunk = (id) => {
     return async (dispatch, getState) => {
         dispatch(getUserStarting())
         try {
-            let user = await Axios.get(`${API_URL}/api/user/${id}`)
-            if(user){
-                dispatch(getUserSuccess(user.data))
+            let res = await Axios.get(`${API_URL}/api/user/${id}`)
+            if(res.statusText === 'OK' && res.status === 200){
+                dispatch(getUserSuccess(res.data))
             }
         } catch (error) {
-            dispatch(getUserError())
+            dispatch(getUserError(error.response.data))
         }
     }
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {useDispatch, useSelector} from 'react-redux';
 import {signUpThunk} from '../../store/signup/actions';
+import ErrorMessage from '../Utils/ErrorMessage';
 
 const SignUpForm = () => {
 
@@ -65,15 +66,9 @@ const SignUpForm = () => {
                 </p>
             </div>
             
-
+            
             {signUp.error && (
-                <div className="field">
-                    <div className="control">
-                        <small className='has-text-danger'>
-                            {signUp.error.message}
-                        </small>
-                    </div>
-                </div>
+                <ErrorMessage error={signUp.error}/>
             )}
 
         </form>

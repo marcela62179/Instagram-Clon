@@ -29,22 +29,24 @@ export const errorLogin = (payload) => {
 export const loginThunk = () => {
     return async (dispatch, getState) => {
         dispatch(startingLogin());
-        const loginForm = getState().form.loginForm
-        const values = loginForm.values
+        try {
+            const loginForm = getState().form.loginForm
+            const values = loginForm.values
 
-        let res = await axios.post(`${API_URL}/api/login`, {
-            username: values.username,
-            password: values.password
-        })
+            let res = await axios.post(`${API_URL}/api/login`, {
+                username: values.username,
+                password: values.password
+            })
 
-        if(res.data.err){
-            dispatch(errorLogin(res.data.err))           
-        }else{
-            setToken(res.data.token)
-            dispatch(successLogin(true));
-            window.location = `/@${values.username}`
+            if(res.statusText === "OK" && res.status === 200){
+                setToken(res.data.token)
+                dispatch(successLogin(true));
+                window.location = `/@${values.username}`
+            }
+
+        } catch (error) {
+            dispatch(errorLogin(error.response.data))
         }
-        
     }
 }
 

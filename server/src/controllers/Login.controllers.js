@@ -24,20 +24,20 @@ export const Login = async (req, res) => {
 
             return res.status(200).json({
                 sucess: true,
-                err: null,
+                message: null,
                 token
             });
         } else {
-            return res.json({
+            return res.status(500).json({
                 sucess: true,
-                err: 'Username or password incorrect',
+                message: 'Username or password incorrect',
                 token: null
             });
         }
     } catch (error) {
-        return res.json({
+        return res.status(500).json({
             sucess: true,
-            err: error,
+            message: error,
             token: null
         });
     }
@@ -83,7 +83,9 @@ export const SignUp = async (req, res) => {
         });
 
     } catch (error) {
-        return res.json(error);
+        return res.status(500).json({
+            message: error
+        });
     }
 }
 

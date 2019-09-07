@@ -13,27 +13,23 @@ export const whoisUser = async (req, res) => {
         const token = req.token;
         const decode = jwt.decode(token);
         const { id } = decode;
-        const user = await User.find({ "_id": id }, { password: false })
+        const user = await User.findOne({ "_id": id }, { password: false })
         
         const isValid = await jwt.verify(token, publicKey)
 
         if (user && isValid) {
-            res.status(200).json(
-                {
-                    user: user[0],
-                    tokenIsValid: true
-                }
-            );
+            res.status(200).json({
+                user: user,
+                tokenIsValid: true
+            });
         } else {
-            res.status(200).json(
-                {
-                    user: null,
-                    tokenIsValid: false
-                }
-            );
+            res.status(200).json({
+                user: null,
+                tokenIsValid: false
+            });
         }
     } catch (error) {
-        res.json({ "error": error })
+        res.status(500).json({ "message": error })
     }
 }
 export const getUser = async (req, res) => {
@@ -43,7 +39,7 @@ export const getUser = async (req, res) => {
         const images = await Image.find({ "author": user[0]._id }).sort({ '_id': -1 });
         return res.status(200).json({ user: user[0], images: images });
     } catch (error) {
-        return res.json({ "error": error })
+        return res.status(500).json({ "message": error })
     }
 }
 export const followUser = async (req, res) => {
@@ -55,18 +51,18 @@ export const followUser = async (req, res) => {
         for (const follow in myUser.follows) {
             if (idASeguir === myUser.follows[follow]) {
                 // Si lo sigues
-                return res.json({
+                return res.status(500).json({
                     success: false,
-                    err: 'Ya sigues a este usuario.'
+                    message: 'Ya sigues a este usuario.'
                 })
             }
         }
 
         // No te puedes seguir a ti mismo
         if (userId === idASeguir) {
-            return res.json({
+            return res.status(500).json({
                 success: false,
-                err: 'No te puedes seguir a ti mismo'
+                message: 'No te puedes seguir a ti mismo'
             })
         }
 
@@ -74,14 +70,15 @@ export const followUser = async (req, res) => {
         await User.update({ "_id": userId }, { $push: { follows: idASeguir } })
         await User.update({ "_id": idASeguir }, { $push: { followers: userId } })
 
-        return res.json({
-            "success": true,
-            "err": null
+        return res.status(200).json({
+            "success": true
         })
 
 
     } catch (error) {
-        return res.json(error)
+        return res.status(500).json({
+            message: error
+        })
     }
 }
 export const unFollowUser = async (req, res) => {
@@ -93,13 +90,14 @@ export const unFollowUser = async (req, res) => {
         await User.update({ "_id": userId }, { $pull: { follows: idASeguir } })
         await User.update({ "_id": idASeguir }, { $pull: { followers: userId } })
 
-        return res.json({
-            "success": true,
-            "err": null
+        return res.status(200).json({
+            "success": true
         })
 
     } catch (error) {
-        return res.json(error)
+        return res.status(500).json({
+            message: error
+        })
     }
 
 }

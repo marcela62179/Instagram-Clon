@@ -38,7 +38,7 @@ export const signUpThunk = () => {
                 password: password
             })
 
-            if(res.data.success){
+            if(res.statusText === 'OK' && res.status === 200){
                 dispatch(successSignup())
                 window.location = '/login?success=true'
             }
