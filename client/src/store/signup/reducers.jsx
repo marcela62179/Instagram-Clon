@@ -3,7 +3,10 @@ import { STARTING_SIGNUP, SUCCESS_SIGNUP, ERROR_SIGNUP } from './actions'
 const INITIAL_STATE = {
     starting: false,
     success: false,
-    error: null
+    error: {
+        message: null,
+        field: null
+    }
 }
 
 

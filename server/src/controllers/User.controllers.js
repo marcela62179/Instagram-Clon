@@ -92,6 +92,7 @@ export const unFollowUser = async (req, res) => {
 
         await User.update({ "_id": userId }, { $pull: { follows: idASeguir } })
         await User.update({ "_id": idASeguir }, { $pull: { followers: userId } })
+
         return res.json({
             "success": true,
             "err": null

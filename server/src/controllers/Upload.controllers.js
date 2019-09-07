@@ -26,8 +26,7 @@ export const Upload = async (req, res) => {
     s3.getSignedUrl('putObject', s3Params, (err, data) => {
 
         if (err) {
-            console.log(err);
-            res.json({ success: false, error: err })
+            return res.status(500).json({ success: false, error: err })
         }
 
         const returnData = {

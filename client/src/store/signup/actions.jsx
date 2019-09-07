@@ -37,10 +37,14 @@ export const signUpThunk = () => {
                 email: email,
                 password: password
             })
-            console.log(res)
-            dispatch(successSignup())
+
+            if(res.data.success){
+                dispatch(successSignup())
+                window.location = '/login?success=true'
+            }
+            
         } catch (error) {
-            dispatch(errorSignup(error))
+            dispatch(errorSignup(error.response.data))
         }
     }
 }

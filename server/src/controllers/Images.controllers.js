@@ -22,10 +22,16 @@ export const newImage = async (req, res) => {
 export const getAllImages = async (req, res) => {
     try {
         let images = await Image.find()
-        //.populate('author')
-        return res.status(200).json(images)
+        if(images){
+            return res.status(200).json(images)
+        }else{
+            return res.status(500).json({
+                err: 'Al parecer no tienes imagenes..'
+            })
+        }
+        
     } catch (error) {
-        return res.json({
+        return res.status(500).json({
             err: error
         })
     }

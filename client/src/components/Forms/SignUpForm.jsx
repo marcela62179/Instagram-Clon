@@ -14,8 +14,6 @@ const SignUpForm = () => {
         dispatch(signUpThunk());
     }
 
-    console.log(signUp)
-
     return (
         <form onSubmit={(e) => signUpSubmit(e)}>
             <h1 className='title has-text-centered has-text-weight-bold'>Registro</h1>
@@ -27,7 +25,7 @@ const SignUpForm = () => {
                         component='input'
                         type='text'
                         placeholder='Enter your username'
-                        className={`input is-shadowless ${signUp.error && 'is-danger' }`}
+                        className={`input is-shadowless ${signUp.error && ( signUp.error.field === 'username' && 'is-danger' )}`}
                         required
                     />
                 </div>
@@ -41,7 +39,7 @@ const SignUpForm = () => {
                         component='input'
                         type='text'
                         placeholder='Enter your email'
-                        className={`input is-shadowless ${signUp.error && 'is-danger' }`}
+                        className={`input is-shadowless ${signUp.error && ( signUp.error.field === 'email' && 'is-danger' )}`}
                         required
                     />
                 </div>
@@ -55,7 +53,7 @@ const SignUpForm = () => {
                         component='input'
                         type='password'
                         placeholder='Enter your password'
-                        className={`input is-shadowless ${signUp.error && 'is-danger' }`}
+                        className={`input is-shadowless`}
                         required
                     />
                 </div>
@@ -72,7 +70,7 @@ const SignUpForm = () => {
                 <div className="field">
                     <div className="control">
                         <small className='has-text-danger'>
-                            {signUp.error}
+                            {signUp.error.message}
                         </small>
                     </div>
                 </div>

@@ -42,7 +42,7 @@ export const loginThunk = () => {
         }else{
             setToken(res.data.token)
             dispatch(successLogin(true));
-            window.location = '/explore'
+            window.location = `/@${values.username}`
         }
         
     }
