@@ -6,7 +6,6 @@ import useProfile from '../Hooks/useProfile';
 import useUser from '../Hooks/useUser';
 import Base from '../layouts/Base';
 import Loader from '../components/Utils/Loader';
-import UserNotExist from './UserNotExist';
 import ErrorMessage from '../components/Utils/ErrorMessage';
 
 const Profile = ({ username }) => {
@@ -20,8 +19,8 @@ const Profile = ({ username }) => {
 		return <Loader />;
 	}
 
-	if (data.username) {
-		if (username !== data.username) {
+	if (data) {
+		if (!error && username !== data.username) {
 			return <></>;
 		}
 	}

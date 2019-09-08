@@ -13,24 +13,25 @@ export const whoisUser = async (req, res) => {
 
 		const token = req.token;
 		const decode = jwt.decode(token);
-		const { id } = decode;
-		const user = await User.findOne({ _id: id }, { password: false });
 
+		let isExpired;
 		const isValid = await jwt.verify(token, publicKey);
 
-		if (user && isValid) {
-			res.status(200).json({
-				user: user,
-				tokenIsValid: true
-			});
-		} else {
-			res.status(200).json({
-				user: null,
+		if (Date.now() >= decode.expiresIn * 1000) {
+			isExpired = false;
+		}
+
+		if (!isValid && isExpired) {
+			return res.status(200).json({
 				tokenIsValid: false
 			});
 		}
+
+		return res.status(200).json({
+			tokenIsValid: true
+		});
 	} catch (error) {
-		res.status(500).json({ message: error });
+		res.status(200).json({ tokenIsValid: false });
 	}
 };
 export const getUser = async (req, res) => {

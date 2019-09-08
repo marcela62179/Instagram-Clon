@@ -36,8 +36,9 @@ function App() {
 				<Route
 					path="/p/:imageid"
 					render={props => {
+						let ImagePageWithAuth = withAuth(ImagePage);
 						let imageid = props.match.params.imageid;
-						return withAuth(<ImagePage imageid={imageid} />);
+						return <ImagePageWithAuth imageid={imageid} />;
 					}}
 				/>
 

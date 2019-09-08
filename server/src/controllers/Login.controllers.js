@@ -24,7 +24,7 @@ export const Login = async (req, res) => {
 					username: user.username
 				},
 				privateKey,
-				{ expiresIn: '7d', algorithm: 'ES512' }
+				{ expiresIn: '3d', algorithm: 'ES512' }
 			);
 
 			return res.status(200).json({
