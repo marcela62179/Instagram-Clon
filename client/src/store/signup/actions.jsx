@@ -1,9 +1,9 @@
-import { API_URL } from '../../helpers/Api_url';
-import axios from 'axios';
+import { API_URL } from "../../helpers/Api_url";
+import axios from "axios";
 
-export const STARTING_SIGNUP = 'STARTING_SIGNUP';
-export const SUCCESS_SIGNUP = 'SUCCESS_SIGNUP';
-export const ERROR_SIGNUP = 'ERROR_SIGNUP';
+export const STARTING_SIGNUP = "STARTING_SIGNUP";
+export const SUCCESS_SIGNUP = "SUCCESS_SIGNUP";
+export const ERROR_SIGNUP = "ERROR_SIGNUP";
 
 export const startingSignup = () => {
 	return {
@@ -37,11 +37,12 @@ export const signUpThunk = () => {
 				password: password
 			});
 
-			if (res.statusText === 'OK' && res.status === 200) {
+			if (res.statusText === "OK" && res.status === 200) {
 				dispatch(successSignup());
-				window.location = '/login?success=true';
+				window.location = "/login?success=true";
 			}
 		} catch (error) {
+			console.log(error.response);
 			dispatch(errorSignup(error.response.data));
 		}
 	};

@@ -86,7 +86,7 @@ export const SignUp = async (req, res) => {
 			});
 		}
 
-		const hashedPassword = bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
+		const hashedPassword = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
 
 		let newUser = new User({
 			username: username,
@@ -95,13 +95,16 @@ export const SignUp = async (req, res) => {
 		});
 
 		await newUser.save();
+
 		return res.status(200).json({
 			success: true,
-			newUser: newUser
+			newUser: newUser,
+			message: "Usuario registrado"
 		});
 	} catch (error) {
 		return res.status(500).json({
-			message: error
+			message: "Error al registrar el usuario",
+			error
 		});
 	}
 };

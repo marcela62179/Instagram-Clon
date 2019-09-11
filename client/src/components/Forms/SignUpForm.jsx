@@ -1,8 +1,8 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { signUpThunk } from '../../store/signup/actions';
-import ErrorMessage from '../Utils/ErrorMessage';
+import React from "react";
+import { Field, reduxForm } from "redux-form";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpThunk } from "../../store/signup/actions";
+import ErrorMessage from "../Utils/ErrorMessage";
 
 const SignUpForm = () => {
 	let dispatch = useDispatch();
@@ -16,9 +16,7 @@ const SignUpForm = () => {
 
 	return (
 		<form onSubmit={e => signUpSubmit(e)}>
-			<h1 className="title has-text-centered has-text-weight-bold">
-				Registro
-			</h1>
+			<h1 className="title has-text-centered has-text-weight-bold">Registro</h1>
 			<div className="field">
 				<label className="label" htmlFor="Username">
 					Username
@@ -30,8 +28,7 @@ const SignUpForm = () => {
 						type="text"
 						placeholder="Enter your username"
 						className={`input is-shadowless ${signUp.error &&
-							(signUp.error.field === 'username' &&
-								'is-danger')}`}
+							(signUp.error.field === "username" && "is-danger")}`}
 						required
 					/>
 				</div>
@@ -48,7 +45,7 @@ const SignUpForm = () => {
 						type="text"
 						placeholder="Enter your email"
 						className={`input is-shadowless ${signUp.error &&
-							(signUp.error.field === 'email' && 'is-danger')}`}
+							(signUp.error.field === "email" && "is-danger")}`}
 						required
 					/>
 				</div>
@@ -74,10 +71,10 @@ const SignUpForm = () => {
 				<p className="control">
 					<button
 						className={`button is-primary is-fullwidth btn-login ${signUp.starting &&
-							'is-loading'}`}
+							"is-loading"}`}
 					>
-						{' '}
-						Sign Up{' '}
+						{" "}
+						Sign Up{" "}
 					</button>
 				</p>
 			</div>
@@ -88,5 +85,5 @@ const SignUpForm = () => {
 };
 
 export default reduxForm({
-	form: 'signupForm'
+	form: "signupForm"
 })(SignUpForm);

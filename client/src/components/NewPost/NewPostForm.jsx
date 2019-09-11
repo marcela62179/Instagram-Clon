@@ -1,21 +1,22 @@
-import React, { useRef, useState } from 'react';
-import { uploadFilePro } from '../../helpers/uploadFile';
-import Axios from 'axios';
-import { history } from '../../helpers/history';
-import { API_URL } from '../../helpers/Api_url';
-import ReactSVG from 'react-svg';
-import UploadIcon from '../../assets/icons/upload.svg';
-import useProfile from '../../Hooks/useProfile';
+import React, { useRef, useState } from "react";
+import { uploadFilePro } from "../../helpers/uploadFile";
+import Axios from "axios";
+import { history } from "../../helpers/history";
+import { API_URL } from "../../helpers/Api_url";
+import ReactSVG from "react-svg";
+import UploadIcon from "../../assets/icons/upload.svg";
+import useProfile from "../../Hooks/useProfile";
+import useUser from "../../Hooks/useUser";
 
 const NewPostForm = ({ setIsOpen }) => {
 	let uploadInput = useRef();
 	let [error, setError] = useState(null);
-
-	const { setReloadProfile } = useProfile();
+	const { data } = useUser();
+	const { setReloadProfile } = useProfile(data.username);
 
 	let uploadNewPost = async e => {
 		e.preventDefault();
-		await uploadFilePro(uploadInput, 'images').then(async res => {
+		await uploadFilePro(uploadInput, "images").then(async res => {
 			console.log(res);
 			await Axios.post(`${API_URL}/api/image`, { url: res.url })
 				.then(res => {
@@ -30,10 +31,7 @@ const NewPostForm = ({ setIsOpen }) => {
 	};
 
 	return (
-		<form
-			onSubmit={e => uploadNewPost(e)}
-			className="is-center is-centered"
-		>
+		<form onSubmit={e => uploadNewPost(e)} className="is-center is-centered">
 			<div className="field">
 				<div className="file has-name is-boxed">
 					<label className="file-label">
@@ -56,9 +54,7 @@ const NewPostForm = ({ setIsOpen }) => {
 				<div className="control">
 					<button className="button is-success"> Publicar ! </button>
 					{error && (
-						<p className="has-text-centered has-text-danger">
-							{error}
-						</p>
+						<p className="has-text-centered has-text-danger">{error}</p>
 					)}
 				</div>
 			</div>

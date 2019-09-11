@@ -1,12 +1,12 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import HeaderProfile from '../components/Profile/HeaderProfile';
-import ProfileImages from '../components/Profile/ProfileImages';
-import useProfile from '../Hooks/useProfile';
-import useUser from '../Hooks/useUser';
-import Base from '../layouts/Base';
-import Loader from '../components/Utils/Loader';
-import ErrorMessage from '../components/Utils/ErrorMessage';
+import React from "react";
+import propTypes from "prop-types";
+import HeaderProfile from "../components/Profile/HeaderProfile";
+import ProfileImages from "../components/Profile/ProfileImages";
+import useProfile from "../Hooks/useProfile";
+import useUser from "../Hooks/useUser";
+import Base from "../layouts/Base";
+import Loader from "../components/Utils/Loader";
+import ErrorMessage from "../components/Utils/ErrorMessage";
 
 const Profile = ({ username }) => {
 	const { loading, data, images, error, setReloadProfile } = useProfile(
@@ -61,7 +61,7 @@ Profile.propTypes = {
 };
 
 Profile.defaultProps = {
-	username: ''
+	username: ""
 };
 
 export default Profile;
