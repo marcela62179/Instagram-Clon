@@ -16,6 +16,8 @@ const withAuth = Component => ({ ...props }) => {
 					setIsValid(res.data.tokenIsValid);
 					setLoadingUser(false);
 					return true;
+				} else {
+					setLoadingUser(false);
 				}
 			} catch (error) {
 				console.log(error);
