@@ -1,30 +1,42 @@
-import User from '../models/User';
-import jwt from 'jsonwebtoken';
+import User from "../models/User";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
+
+const BCRYPT_SALT_ROUNDS = 10;
 
 export const Login = async (req, res) => {
 	try {
 		let { username, password } = req.body;
 
-		let user = await User.findOne({
-			username: username,
-			password: password
+		let userInDb = await User.findOne({
+			username: username
 		});
 
-		if (user) {
+		if (!userInDb) {
+			return res.status(500).json({
+				sucess: false,
+				message: "Username or password incorrect",
+				token: null
+			});
+		}
+
+		const isSamePassword = await bcrypt.compare(password, userInDb.password);
+
+		if (isSamePassword) {
 			const privateKey = fs.readFileSync(
-				path.resolve(__dirname, '../keys/privateKey.pem')
+				path.resolve(__dirname, "../keys/privateKey.pem")
 			);
 			// Generamos el token y lo enviamos si el usuario logeado es correcto.
 			let token = jwt.sign(
 				{
-					id: user._id,
-					username: user.username
+					id: userInDb._id,
+					username: userInDb.username
 				},
 				privateKey,
-				{ expiresIn: '3d', algorithm: 'ES512' }
+				{ expiresIn: "3d", algorithm: "ES512" }
 			);
 
 			return res.status(200).json({
@@ -34,14 +46,14 @@ export const Login = async (req, res) => {
 			});
 		} else {
 			return res.status(500).json({
-				sucess: true,
-				message: 'Username or password incorrect',
+				sucess: false,
+				message: "Username or password incorrect",
 				token: null
 			});
 		}
 	} catch (error) {
 		return res.status(500).json({
-			sucess: true,
+			sucess: false,
 			message: error,
 			token: null
 		});
@@ -62,22 +74,24 @@ export const SignUp = async (req, res) => {
 
 		if (verifyUsername) {
 			return res.status(500).json({
-				message: 'Username not available',
-				field: 'username'
+				message: "Username not available",
+				field: "username"
 			});
 		}
 
 		if (verifyEmail) {
 			return res.status(500).json({
-				message: 'Email not available',
-				field: 'email'
+				message: "Email not available",
+				field: "email"
 			});
 		}
+
+		const hashedPassword = bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
 
 		let newUser = new User({
 			username: username,
 			email: email,
-			password: password
+			password: hashedPassword
 		});
 
 		await newUser.save();
