@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import useUser from '../Hooks/useUser';
-import { logOut } from '../store/login/actions';
-import NewPostModal from './NewPost/NewPostModal';
-import ReactSVG from 'react-svg';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import useUser from "../Hooks/useUser";
+import { logOut } from "../store/login/actions";
+import NewPostModal from "./NewPost/NewPostModal";
+import ReactSVG from "react-svg";
 
 // Icons
-import ExploreIcon from '../assets/icons/explore.svg';
-import ProfileIcon from '../assets/icons/profile.svg';
-import UploadIcon from '../assets/icons/upload.svg';
+import ExploreIcon from "../assets/icons/explore.svg";
+import ProfileIcon from "../assets/icons/profile.svg";
+import UploadIcon from "../assets/icons/upload.svg";
 
 const AppMenu = () => {
-	let [newPostModalOpen, setNewPostModalOpen] = useState(false);
+	let [isOpen, setIsOpen] = useState(false);
 
 	const dispatch = useDispatch();
 	const { data, loading, isLoged } = useUser();
@@ -33,10 +33,7 @@ const AppMenu = () => {
 				aria-label="main navigation"
 			>
 				<div className="container">
-					<NewPostModal
-						isOpen={newPostModalOpen}
-						setIsOpen={setNewPostModalOpen}
-					/>
+					<NewPostModal isOpen={isOpen} setIsOpen={setIsOpen} />
 					<div className="navbar-brand">
 						<NavLink to="/explore" className="navbar-item">
 							<h2 className="subtitle">Explore</h2>
@@ -59,10 +56,7 @@ const AppMenu = () => {
 						<div className="navbar-start"></div>
 
 						<div className="navbar-end">
-							<a
-								className="navbar-item"
-								onClick={() => setNewPostModalOpen(true)}
-							>
+							<a className="navbar-item" onClick={() => setIsOpen(true)}>
 								<ReactSVG className="icon" src={UploadIcon} />
 							</a>
 
@@ -87,8 +81,8 @@ const AppMenu = () => {
 									className="button is-danger"
 									onClick={() => dispatch(logOut())}
 								>
-									{' '}
-									Log out{' '}
+									{" "}
+									Log out{" "}
 								</button>
 							</div>
 						</div>

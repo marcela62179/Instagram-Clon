@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getImageThunk } from '../store/Image/actions';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getImageThunk } from "../store/singleImage/actions";
 
 function useSingleImage(imageId) {
 	const [reload, setReload] = useState(false);
@@ -15,11 +15,9 @@ function useSingleImage(imageId) {
 	}, []);
 
 	useEffect(() => {
-		if (reload) {
-			if (image) {
-				dispatch(getImageThunk(imageId));
-				setReload(false);
-			}
+		if (reload && image) {
+			dispatch(getImageThunk(imageId));
+			setReload(false);
 		}
 	}, [reload]);
 

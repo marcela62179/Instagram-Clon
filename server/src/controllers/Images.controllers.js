@@ -14,7 +14,7 @@ export const newImage = async (req, res) => {
 			.populate("author", "username");
 	} catch (error) {
 		return res.status(500).json({
-			message: error
+			message: "Error al subir la imagen"
 		});
 	}
 };

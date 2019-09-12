@@ -2,15 +2,14 @@ import {
 	GET_PROFILE_STARTING,
 	GET_PROFILE_SUCCESS,
 	GET_PROFILE_ERROR
-} from './actions';
+} from "./actions";
 
 const INITIAL_STATE = {
 	loading: true,
 	starting: false,
 	data: {},
 	images: [],
-	error: null,
-	message: null
+	error: null
 };
 
 export let profileReducer = (state = INITIAL_STATE, action) => {
@@ -21,8 +20,7 @@ export let profileReducer = (state = INITIAL_STATE, action) => {
 				starting: true,
 				data: {},
 				images: [],
-				error: null,
-				message: 'starting'
+				error: null
 			});
 		case GET_PROFILE_SUCCESS:
 			return Object.assign({}, state, {
@@ -30,8 +28,7 @@ export let profileReducer = (state = INITIAL_STATE, action) => {
 				starting: false,
 				data: action.payload.user,
 				images: action.payload.images,
-				error: null,
-				message: 'success'
+				error: null
 			});
 		case GET_PROFILE_ERROR:
 			return Object.assign({}, state, {
@@ -39,8 +36,7 @@ export let profileReducer = (state = INITIAL_STATE, action) => {
 				starting: false,
 				data: {},
 				images: [],
-				error: action.payload,
-				message: 'error'
+				error: action.payload
 			});
 		default:
 			return state;

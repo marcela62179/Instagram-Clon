@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
-import axios from 'axios';
-import { API_URL } from './Api_url';
+import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+import axios from "axios";
+import { API_URL } from "./Api_url";
 
 const withAuth = Component => ({ ...props }) => {
 	let [loadingUser, setLoadingUser] = useState(true);
@@ -12,7 +12,7 @@ const withAuth = Component => ({ ...props }) => {
 			try {
 				let res = await axios.get(`${API_URL}/api/user/whois`);
 
-				if (res.statusText === 'OK' && res.status === 200) {
+				if (res.statusText === "OK" && res.status === 200) {
 					setIsValid(res.data.tokenIsValid);
 					setLoadingUser(false);
 					return true;

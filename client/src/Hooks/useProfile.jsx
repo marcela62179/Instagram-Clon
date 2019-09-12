@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getProfileThunk } from '../store/profile/actions';
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getProfileThunk } from "../store/profile/actions";
 
 function useProfile(username) {
 	const [reload, setReload] = useState(false);
@@ -15,11 +15,9 @@ function useProfile(username) {
 	}, []);
 
 	useEffect(() => {
-		if (reload) {
-			if (profile) {
-				dispatch(getProfileThunk(username));
-				setReload(false);
-			}
+		if (reload && profile) {
+			dispatch(getProfileThunk(username));
+			setReload(false);
 		}
 	}, [reload]);
 
