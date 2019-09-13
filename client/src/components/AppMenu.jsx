@@ -36,7 +36,7 @@ const AppMenu = () => {
 					<NewPostModal isOpen={isOpen} setIsOpen={setIsOpen} />
 					<div className="navbar-brand">
 						<NavLink to="/explore" className="navbar-item">
-							<h2 className="subtitle">Explore</h2>
+							<h2 className="subtitle"></h2>
 						</NavLink>
 
 						<a

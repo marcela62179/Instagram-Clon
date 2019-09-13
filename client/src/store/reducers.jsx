@@ -4,7 +4,7 @@ import { loginReducer } from "./login/reducers";
 import { profileReducer } from "./profile/reducers";
 import { userReducer } from "./user/reducers";
 import { signupReducer } from "./signup/reducers";
-import { imageReducer } from "./Image/reducers";
+import { imageReducer } from "./singleImage/reducers";
 import { uploadImageReducer } from "./uploadImage/reducers";
 
 const reducers = combineReducers({

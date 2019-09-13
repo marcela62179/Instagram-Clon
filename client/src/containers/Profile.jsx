@@ -1,56 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import propTypes from "prop-types";
-import HeaderProfile from "../components/Profile/HeaderProfile";
-import ProfileImages from "../components/Profile/ProfileImages";
 import useProfile from "../Hooks/useProfile";
 import useUser from "../Hooks/useUser";
 import Base from "../layouts/Base";
 import Loader from "../components/Utils/Loader";
-import ErrorMessage from "../components/Utils/ErrorMessage";
+import ProfileImages from "../components/Profile/ProfileImages";
+import SidebarProfile from "../components/Profile/SidebarProfile";
 
 const Profile = ({ username }) => {
-	const { loading, data, images, error, setReloadProfile } = useProfile(
-		username
-	);
-
-	const user = useUser();
-
+	const { loading, data, images } = useProfile(username);
+	const logedUserData = useUser();
 	if (loading) {
 		return <Loader />;
 	}
 
-	if (data) {
-		if (!error && username !== data.username) {
-			return <></>;
-		}
+	if (Object.keys(data).length === 0) {
+		return (
+			<div className="centerAll height100">
+				<h1 className="title"> Este perfil no existe </h1>
+			</div>
+		);
 	}
 
 	return (
 		<Base title={username} description="desc de profile">
-			<div className="container">
-				<div className="columns">
-					<div className="column is-10 is-offset-1">
-						{!error && (
-							<HeaderProfile
-								profile={data}
-								user={user.data}
-								images={images}
-								setReloadProfile={setReloadProfile}
-							/>
-						)}
-					</div>
-				</div>
-
-				<div className="columns">
-					<div className="column"></div>
-				</div>
-
-				<div className="columns">
-					<div className="column is-8 is-offset-2">
-						{!error && <ProfileImages images={images} />}
-						{error && <ErrorMessage error={error} />}
-					</div>
-				</div>
+			<SidebarProfile profileData={data} />
+			<div className="container sidebarMargin">
+				<ProfileImages
+					images={images}
+					username={username}
+					userLoged={logedUserData.data}
+				/>
 			</div>
 		</Base>
 	);

@@ -15,8 +15,10 @@ function useProfile(username) {
 	}, []);
 
 	useEffect(() => {
-		if (reload && profile) {
+		if (reload) {
+			const username = profile.data.username;
 			dispatch(getProfileThunk(username));
+			console.log("usrname: " + username);
 			setReload(false);
 		}
 	}, [reload]);

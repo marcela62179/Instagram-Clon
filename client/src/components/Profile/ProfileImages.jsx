@@ -1,20 +1,36 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import ImageCard from './ImageCard';
+import React from "react";
+import propTypes from "prop-types";
+import ImageCard from "./ImageCard";
+import ImageDestacada from "./ImageDestacada";
 
-const ProfileImages = ({ images }) => {
+const ProfileImages = ({ images, userLoged, username }) => {
+	const imagenDestacada = images.filter(image => image.destacada === true)[0];
 	return (
-		<section className="imagesContainer">
-			{images.length === 0 && (
-				<div>
-					<b>Este perfil aun no sube imagenes.</b>
+		<>
+			<div className="columns">
+				<div className="column is-11 is-offset-1">
+					{imagenDestacada && <ImageDestacada image={imagenDestacada} />}
+					{!imagenDestacada && username === userLoged.username && (
+						<>
+							<b>Sabias que puedes destacar una imagen ?</b>
+							<br />
+							<small> este mensaje solo lo ves tu.</small>
+						</>
+					)}
 				</div>
-			)}
+			</div>
 
-			{images.map(image => (
-				<ImageCard image={image} key={image._id} />
-			))}
-		</section>
+			<div className="columns">
+				<div className="column is-11 is-offset-1">
+					<div className="imagesContainer">
+						{images.map(
+							image =>
+								!image.destacada && <ImageCard image={image} key={image._id} />
+						)}
+					</div>
+				</div>
+			</div>
+		</>
 	);
 };
 

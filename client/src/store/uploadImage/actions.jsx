@@ -1,5 +1,6 @@
 import axios from "axios";
 import { history } from "../../helpers/history";
+import useProfile from "../../Hooks/useProfile";
 import { API_URL } from "../../helpers/Api_url";
 
 export const UPLOAD_IMAGE_STARTING = "UPLOAD_IMAGE_STARTING";

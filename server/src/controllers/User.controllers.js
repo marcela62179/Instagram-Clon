@@ -1,14 +1,14 @@
-import User from '../models/User';
-import Image from '../models/Image';
-import jwt from 'jsonwebtoken';
+import User from "../models/User";
+import Image from "../models/Image";
+import jwt from "jsonwebtoken";
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 export const whoisUser = async (req, res) => {
 	try {
 		const publicKey = fs.readFileSync(
-			path.resolve(__dirname, '../keys/publicKey.pem')
+			path.resolve(__dirname, "../keys/publicKey.pem")
 		);
 
 		const token = req.token;
@@ -46,14 +46,14 @@ export const getUser = async (req, res) => {
 		});
 
 		if (!user) {
-			return res.status(500).json({ message1: 'Este usuario no existe' });
+			return res.status(500).json({ message: "Este usuario no existe" });
 		}
 
 		return res.status(200).json({ user: user, images: images });
 	} catch (error) {
 		return res
 			.status(500)
-			.json({ message: 'Al parecer este usuario no existe' });
+			.json({ message: "Al parecer este usuario no existe" });
 	}
 };
 export const followUser = async (req, res) => {
@@ -67,7 +67,7 @@ export const followUser = async (req, res) => {
 				// Si lo sigues
 				return res.status(500).json({
 					success: false,
-					message: 'Ya sigues a este usuario.'
+					message: "Ya sigues a este usuario."
 				});
 			}
 		}
@@ -76,7 +76,7 @@ export const followUser = async (req, res) => {
 		if (userId === idASeguir) {
 			return res.status(500).json({
 				success: false,
-				message: 'No te puedes seguir a ti mismo'
+				message: "No te puedes seguir a ti mismo"
 			});
 		}
 

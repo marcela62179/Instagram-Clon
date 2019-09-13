@@ -3,22 +3,17 @@ import { useDispatch } from "react-redux";
 import { uploadFilePro } from "../../helpers/uploadFile";
 import ReactSVG from "react-svg";
 import UploadIcon from "../../assets/icons/upload.svg";
-import useProfile from "../../Hooks/useProfile";
-import useUser from "../../Hooks/useUser";
 import { uploadImageThunk } from "../../store/uploadImage/actions";
 
 const NewPostForm = ({ setIsOpen }) => {
-	let uploadInput = useRef();
-	const { data } = useUser();
-	const { setReloadProfile } = useProfile(data.username);
+	const uploadInput = useRef();
 	const dispatch = useDispatch();
 
-	let uploadNewPost = async e => {
+	const uploadNewPost = async e => {
 		e.preventDefault();
 		await uploadFilePro(uploadInput, "images").then(async res => {
 			dispatch(uploadImageThunk(res.url));
 			setTimeout(() => {
-				setReloadProfile(true);
 				setIsOpen(false);
 			}, 50);
 		});

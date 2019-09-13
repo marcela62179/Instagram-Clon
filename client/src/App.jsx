@@ -1,13 +1,13 @@
-import React from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
-import { history } from './helpers/history';
-import withAuth from './helpers/withAuth';
-import Explore from './containers/Explore';
-import Login from './containers/Login';
-import ImagePage from './containers/ImagePage';
-import Profile from './containers/Profile';
-import AppMenu from './components/AppMenu';
-import { initAxiosInterceptors } from './helpers/auth-helpers';
+import React from "react";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { history } from "./helpers/history";
+import withAuth from "./helpers/withAuth";
+import Explore from "./containers/Explore";
+import Login from "./containers/Login";
+import ImagePage from "./containers/ImagePage";
+import Profile from "./containers/Profile";
+import AppMenu from "./components/AppMenu";
+import { initAxiosInterceptors } from "./helpers/auth-helpers";
 
 initAxiosInterceptors();
 
@@ -25,10 +25,10 @@ function App() {
 
 				<Route
 					exact
-					path="/@:username?"
+					path="/@:username"
 					render={props => {
-						let ProfileWithAuth = withAuth(Profile);
-						let username = props.match.params.username;
+						const ProfileWithAuth = withAuth(Profile);
+						const username = props.match.params.username;
 						return <ProfileWithAuth username={username} />;
 					}}
 				/>
@@ -36,8 +36,8 @@ function App() {
 				<Route
 					path="/p/:imageid"
 					render={props => {
-						let ImagePageWithAuth = withAuth(ImagePage);
-						let imageid = props.match.params.imageid;
+						const ImagePageWithAuth = withAuth(ImagePage);
+						const imageid = props.match.params.imageid;
 						return <ImagePageWithAuth imageid={imageid} />;
 					}}
 				/>
