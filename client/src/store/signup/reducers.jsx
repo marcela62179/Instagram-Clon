@@ -1,4 +1,8 @@
-import { STARTING_SIGNUP, SUCCESS_SIGNUP, ERROR_SIGNUP } from './actions';
+import {
+	STARTING_SIGNUP,
+	SUCCESS_SIGNUP,
+	ERROR_SIGNUP
+} from "store/signup/actions";
 
 const INITIAL_STATE = {
 	starting: false,

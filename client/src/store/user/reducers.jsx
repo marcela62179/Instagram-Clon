@@ -1,4 +1,8 @@
-import { GET_USER_STARTING, GET_USER_SUCCESS, GET_USER_ERROR } from './actions';
+import {
+	GET_USER_STARTING,
+	GET_USER_SUCCESS,
+	GET_USER_ERROR
+} from "store/user/actions";
 
 let INITIAL_STATE = {
 	loading: true,

@@ -1,13 +1,13 @@
 import React from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import { history } from "./helpers/history";
-import withAuth from "./helpers/withAuth";
-import Explore from "./containers/Explore";
-import Login from "./containers/Login";
-import ImagePage from "./containers/ImagePage";
-import Profile from "./containers/Profile";
-import AppMenu from "./components/AppMenu";
-import { initAxiosInterceptors } from "./helpers/auth-helpers";
+import { history } from "helpers/history";
+import withAuth from "helpers/withAuth";
+import Explore from "containers/Explore";
+import Login from "containers/Login";
+import ImagePage from "containers/ImagePage";
+import Profile from "containers/Profile";
+import AppMenu from "components/AppMenu";
+import { initAxiosInterceptors } from "helpers/auth-helpers";
 
 initAxiosInterceptors();
 

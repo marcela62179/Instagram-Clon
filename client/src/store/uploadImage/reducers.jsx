@@ -2,7 +2,7 @@ import {
 	UPLOAD_IMAGE_STARTING,
 	UPLOAD_IMAGE_SUCCESS,
 	UPLOAD_IMAGE_ERROR
-} from "./actions";
+} from "store/uploadImage/actions";
 
 const INITIAL_STATE = {
 	starting: false,

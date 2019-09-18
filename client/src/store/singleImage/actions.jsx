@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from "../../helpers/Api_url";
+import { API_URL } from "helpers/Api_url";
 
 export const GET_IMAGE_STARTING = "GET_IMAGE_STARTING";
 export const GET_IMAGE_SUCCESS = "GET_IMAGE_SUCCESS";

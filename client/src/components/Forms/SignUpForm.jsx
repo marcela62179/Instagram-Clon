@@ -1,8 +1,8 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { useDispatch, useSelector } from "react-redux";
-import { signUpThunk } from "../../store/signup/actions";
-import ErrorMessage from "../Utils/ErrorMessage";
+import { signUpThunk } from "store/signup/actions";
+import ErrorMessage from "components/Utils/ErrorMessage";
 
 const SignUpForm = () => {
 	let dispatch = useDispatch();

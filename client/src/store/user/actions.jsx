@@ -1,9 +1,9 @@
-import Axios from 'axios';
-import { API_URL } from '../../helpers/Api_url';
+import Axios from "axios";
+import { API_URL } from "helpers/Api_url";
 
-export const GET_USER_STARTING = 'GET_USER_STARTING';
-export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
-export const GET_USER_ERROR = 'GET_USER_ERROR';
+export const GET_USER_STARTING = "GET_USER_STARTING";
+export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const GET_USER_ERROR = "GET_USER_ERROR";
 
 export const getUserStarting = () => {
 	return {
@@ -30,7 +30,7 @@ export const getUserThunk = id => {
 		dispatch(getUserStarting());
 		try {
 			let res = await Axios.get(`${API_URL}/api/user/${id}`);
-			if (res.statusText === 'OK' && res.status === 200) {
+			if (res.statusText === "OK" && res.status === 200) {
 				dispatch(getUserSuccess(res.data));
 			}
 		} catch (error) {

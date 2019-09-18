@@ -2,7 +2,7 @@ import {
 	GET_PROFILE_STARTING,
 	GET_PROFILE_SUCCESS,
 	GET_PROFILE_ERROR
-} from "./actions";
+} from "store/profile/actions";
 
 const INITIAL_STATE = {
 	loading: true,

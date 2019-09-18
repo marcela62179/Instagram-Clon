@@ -1,5 +1,5 @@
-import React from 'react';
-import Base from '../layouts/Base';
+import React from "react";
+import Base from "layouts/Base";
 
 const Explore = () => {
 	return (

@@ -2,7 +2,7 @@ import {
 	GET_IMAGE_STARTING,
 	GET_IMAGE_SUCCESS,
 	GET_IMAGE_ERROR
-} from "./actions";
+} from "store/singleImage/actions";
 
 let INITIAL_DATA = {
 	starting: false,

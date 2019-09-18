@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserThunk } from "../store/user/actions";
-import { getTokenDecode } from "../helpers/auth-helpers";
+import { getUserThunk } from "store/user/actions";
+import { getTokenDecode } from "helpers/auth-helpers";
 
 function useUser() {
 	const [reload, setReload] = useState(false);

@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import propTypes from "prop-types";
-import useProfile from "../Hooks/useProfile";
-import useUser from "../Hooks/useUser";
-import Base from "../layouts/Base";
-import Loader from "../components/Utils/Loader";
-import ProfileImages from "../components/Profile/ProfileImages";
-import SidebarProfile from "../components/Profile/SidebarProfile";
+import useProfile from "Hooks/useProfile";
+import useUser from "Hooks/useUser";
+import Base from "layouts/Base";
+import Loader from "components/Utils/Loader";
+import ProfileImages from "components/Profile/ProfileImages";
+import SidebarProfile from "components/Profile/SidebarProfile";
 
 const Profile = ({ username }) => {
 	const { loading, data, images } = useProfile(username);
+
 	const logedUserData = useUser();
+
 	if (loading) {
 		return <Loader />;
 	}
@@ -25,7 +27,7 @@ const Profile = ({ username }) => {
 	return (
 		<Base title={username} description="desc de profile">
 			<SidebarProfile profileData={data} />
-			<div className="container sidebarMargin">
+			<div className="container">
 				<ProfileImages
 					images={images}
 					username={username}

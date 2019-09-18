@@ -1,5 +1,5 @@
 import React from "react";
-import NewPostForm from "./NewPostForm";
+import NewPostForm from "components/NewPost/NewPostForm";
 
 const NewPostModal = ({ isOpen, setIsOpen }) => {
 	return (

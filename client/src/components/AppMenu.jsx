@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import useUser from "../Hooks/useUser";
-import { logOut } from "../store/login/actions";
-import NewPostModal from "./NewPost/NewPostModal";
+import useUser from "Hooks/useUser";
+import { logOut } from "store/login/actions";
+import NewPostModal from "components/NewPost/NewPostModal";
 import ReactSVG from "react-svg";
 
 // Icons
-import ExploreIcon from "../assets/icons/explore.svg";
-import ProfileIcon from "../assets/icons/profile.svg";
-import UploadIcon from "../assets/icons/upload.svg";
+import ExploreIcon from "assets/icons/explore.svg";
+import ProfileIcon from "assets/icons/profile.svg";
+import UploadIcon from "assets/icons/upload.svg";
 
 const AppMenu = () => {
 	let [isOpen, setIsOpen] = useState(false);

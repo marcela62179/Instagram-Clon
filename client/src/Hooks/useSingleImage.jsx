@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getImageThunk } from "../store/singleImage/actions";
+import { getImageThunk } from "store/singleImage/actions";
 
 function useSingleImage(imageId) {
 	const [reload, setReload] = useState(false);

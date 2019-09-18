@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from "../../helpers/Api_url";
+import { API_URL } from "helpers/Api_url";
 
 export const GET_PROFILE_STARTING = "GET_PROFILE_STARTING";
 export const GET_PROFILE_SUCCESS = "GET_PROFILE_SUCCESS";

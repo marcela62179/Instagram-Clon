@@ -1,4 +1,8 @@
-import { STARTING_LOGIN, SUCCESS_LOGIN, ERROR_LOGIN } from './actions';
+import {
+	STARTING_LOGIN,
+	SUCCESS_LOGIN,
+	ERROR_LOGIN
+} from "store/login/actions";
 
 let INITIAL_STATE = {
 	starting: false,

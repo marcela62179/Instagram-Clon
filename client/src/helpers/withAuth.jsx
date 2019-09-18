@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import { API_URL } from "./Api_url";
+import { API_URL } from "helpers/Api_url";
 
 const withAuth = Component => ({ ...props }) => {
 	let [loadingUser, setLoadingUser] = useState(true);

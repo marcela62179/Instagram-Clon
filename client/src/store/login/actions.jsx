@@ -1,10 +1,10 @@
-import axios from 'axios';
-import { API_URL } from '../../helpers/Api_url';
-import { setToken, deleteToken } from '../../helpers/auth-helpers';
+import axios from "axios";
+import { API_URL } from "helpers/Api_url";
+import { setToken, deleteToken } from "helpers/auth-helpers";
 
-export const STARTING_LOGIN = 'STARTING_LOGIN';
-export const SUCCESS_LOGIN = 'SUCCESS_LOGIN';
-export const ERROR_LOGIN = 'ERROR_LOGIN';
+export const STARTING_LOGIN = "STARTING_LOGIN";
+export const SUCCESS_LOGIN = "SUCCESS_LOGIN";
+export const ERROR_LOGIN = "ERROR_LOGIN";
 
 export const startingLogin = () => {
 	return {
@@ -38,7 +38,7 @@ export const loginThunk = () => {
 				password: values.password
 			});
 
-			if (res.statusText === 'OK' && res.status === 200) {
+			if (res.statusText === "OK" && res.status === 200) {
 				setToken(res.data.token);
 				dispatch(successLogin(true));
 				window.location = `/@${values.username}`;
@@ -53,6 +53,6 @@ export const logOut = () => {
 	return async dispatch => {
 		deleteToken();
 		dispatch(successLogin(false));
-		window.location = '/login';
+		window.location = "/login";
 	};
 };

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginThunk } from '../../store/login/actions';
-import ErrorMessage from '../Utils/ErrorMessage';
+import React from "react";
+import { Field, reduxForm } from "redux-form";
+import { useDispatch, useSelector } from "react-redux";
+import { loginThunk } from "store/login/actions";
+import ErrorMessage from "components/Utils/ErrorMessage";
 
 const LoginForm = () => {
 	let dispatch = useDispatch();
@@ -29,8 +29,7 @@ const LoginForm = () => {
 						component="input"
 						type="text"
 						placeholder="Enter your username"
-						className={`input is-shadowless ${login.error &&
-							'is-danger'}`}
+						className={`input is-shadowless ${login.error && "is-danger"}`}
 						required
 					/>
 				</div>
@@ -45,8 +44,7 @@ const LoginForm = () => {
 						component="input"
 						type="password"
 						placeholder="Enter your password"
-						className={`input is-shadowless ${login.error &&
-							'is-danger'}`}
+						className={`input is-shadowless ${login.error && "is-danger"}`}
 						required
 					/>
 				</div>
@@ -64,10 +62,10 @@ const LoginForm = () => {
 				<p className="control">
 					<button
 						className={`button is-primary is-fullwidth btn-login ${login.starting &&
-							'is-loading'}`}
+							"is-loading"}`}
 					>
-						{' '}
-						Log In{' '}
+						{" "}
+						Log In{" "}
 					</button>
 				</p>
 			</div>
@@ -78,5 +76,5 @@ const LoginForm = () => {
 };
 
 export default reduxForm({
-	form: 'loginForm'
+	form: "loginForm"
 })(LoginForm);

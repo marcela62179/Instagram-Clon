@@ -1,8 +1,8 @@
-import Axios from 'axios';
-import { API_URL } from './Api_url';
-import jwt from 'jsonwebtoken';
+import Axios from "axios";
+import { API_URL } from "helpers/Api_url";
+import jwt from "jsonwebtoken";
 
-const TOKEN_KEY = 'token';
+const TOKEN_KEY = "token";
 
 export function setToken(valor) {
 	localStorage.setItem(TOKEN_KEY, valor);
@@ -50,7 +50,7 @@ export function initAxiosInterceptors() {
 		function(error) {
 			if (401 === error.response.status) {
 				deleteToken();
-				window.location = '/login';
+				window.location = "/login";
 			} else {
 				return Promise.reject(error);
 			}

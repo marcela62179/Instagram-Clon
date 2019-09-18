@@ -1,5 +1,5 @@
-import React from 'react';
-import Seo from './Seo';
+import React from "react";
+import Seo from "layouts/Seo";
 
 const Base = props => {
 	const { children, title, description } = props;
@@ -13,8 +13,8 @@ const Base = props => {
 };
 
 Base.defaultProps = {
-	title: '',
-	description: ''
+	title: "",
+	description: ""
 };
 
 export default Base;

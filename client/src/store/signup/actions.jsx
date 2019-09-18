@@ -1,4 +1,4 @@
-import { API_URL } from "../../helpers/Api_url";
+import { API_URL } from "helpers/Api_url";
 import axios from "axios";
 
 export const STARTING_SIGNUP = "STARTING_SIGNUP";

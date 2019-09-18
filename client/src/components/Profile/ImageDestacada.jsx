@@ -4,9 +4,9 @@ const ImageDestacada = ({ image }) => {
 	return (
 		<>
 			<div className="imageDestacadaInfo">
-				<b className="imageLocation">Chillan, Region de Ñuble</b>
+				<b className="imageLocation">Puerto Montt</b>
 
-				<small className="imageDate">JUNE 19 2019</small>
+				<small className="imageDate">SEPTEMBER 14 2019</small>
 			</div>
 			<div className="imageDestacada">
 				<img src={url} alt="" />

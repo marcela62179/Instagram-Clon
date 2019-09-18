@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { uploadFilePro } from "../../helpers/uploadFile";
+import { uploadFilePro } from "helpers/uploadFile";
 import ReactSVG from "react-svg";
-import UploadIcon from "../../assets/icons/upload.svg";
-import { uploadImageThunk } from "../../store/uploadImage/actions";
+import UploadIcon from "assets/icons/upload.svg";
+import { uploadImageThunk } from "store/uploadImage/actions";
 
 const NewPostForm = ({ setIsOpen }) => {
 	const uploadInput = useRef();

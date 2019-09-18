@@ -1,8 +1,8 @@
-import React from 'react';
-import Base from '../layouts/Base';
-import useSingleImage from '../Hooks/useSingleImage';
-import Loader from '../components/Utils/Loader';
-import ErrorMessage from '../components/Utils/ErrorMessage';
+import React from "react";
+import Base from "layouts/Base";
+import useSingleImage from "Hooks/useSingleImage";
+import Loader from "components/Utils/Loader";
+import ErrorMessage from "components/Utils/ErrorMessage";
 
 const ImagePage = ({ imageid }) => {
 	const { starting, data, error } = useSingleImage(imageid);

@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
-import ImageCard from "./ImageCard";
-import ImageDestacada from "./ImageDestacada";
+import ImageCard from "components/Profile/ImageCard";
+import ImageDestacada from "components/Profile/ImageDestacada";
 
 const ProfileImages = ({ images, userLoged, username }) => {
 	const imagenDestacada = images.filter(image => image.destacada === true)[0];
